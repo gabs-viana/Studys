@@ -1,0 +1,2 @@
+Hoje dia 29/01, tentarei distribuir todas estas pastas para Branchs, o que vai melhorar o entendimento do meu GItHub.
+Caso tudo dê errado, reverter para o commit "Botando ordem na casa", o último, pois é lá que eu estava antes de escrever esse Readme.
