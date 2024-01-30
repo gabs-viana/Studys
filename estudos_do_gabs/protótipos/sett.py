@@ -15,8 +15,7 @@ outroChamp = input("\nVocê deseja verificar outro campeão? ")
 
 if outroChamp == "Sim" or "sim":
     print("\nSelecione o campeão")
-    novo_champ = input("""
-    1) Nasus
+    novo_champ = input("""    1) Nasus
     2) Kennen
     3) Draven
     4) Twitch
