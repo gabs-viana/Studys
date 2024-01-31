@@ -1,2 +1,5 @@
-Hoje dia 29/01, tentarei distribuir todas estas pastas para Branchs, o que vai melhorar o entendimento do meu GItHub.
-Caso tudo dê errado, reverter para o commit "Botando ordem na casa", o último, pois é lá que eu estava antes de escrever esse Readme.
+Acima encontramos meus mini projetos e passa-tempos em Python, que é a linguagem que irei me especializar.
+
+Atualmente, finalmente obtemos a base da pasta e e temos a primeira versão:
+
+## v1.0 (beta)
