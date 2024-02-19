@@ -8,18 +8,17 @@ def resposta_personalizada(mensagem):
     # Mapeia os IDs dos usuários para suas respostas personalizadas
     respostas = {
         5858174443: """Olá Gabsᶜʳᶠ! 🔴⚫ 
-            Olá! 👋
 
 Eu sou o MergeGuard, seu assistente de integração entre o GitLab e o Telegram! 🤖🔒
 
 ℹ️ Como eu posso te ajudar?
 ➡️ Você pode usar os seguintes comandos para interagir comigo:
 
-      /start - Inicia a interação com o MergeGuard e exibe esta mensagem de boas-vindas.
+/start - Inicia a interação com o MergeGuard e exibe esta mensagem de boas-vindas.
 
-      📢 Além disso, estou aqui para manter você atualizado sobre eventos importantes do seu projeto no GitLab! Receba notificações sobre commits, merge requests, pipelines e muito mais diretamente no seu Telegram.
+📢 Além disso, estou aqui para manter você atualizado sobre eventos importantes do seu projeto no GitLab! Receba notificações sobre commits, merge requests, pipelines e muito mais diretamente no seu Telegram.
 
-      Agora vamos lá, explorar todas as funcionalidades do MergeGuard juntos! 🚀 .        
+Agora vamos lá, explorar todas as funcionalidades do MergeGuard juntos! 🚀 .        
         """,
         987654321: "Olá Vitão! ",
         111222333: "Olá Matheus !",
@@ -50,18 +49,18 @@ def responder(mensagem):
 @bot.message_handler(func=lambda message: True)
 def responder_padrao(mensagem):
       texto = """
-            Olá! 👋
+Olá! 👋
 
-      Eu sou o MergeGuard, seu assistente de integração entre o GitLab e o Telegram! 🤖🔒
+Eu sou o MergeGuard, seu assistente de integração entre o GitLab e o Telegram! 🤖🔒
 
-      ℹ️ Como eu posso te ajudar?
-      ➡️ Você pode usar os seguintes comandos para interagir comigo:
+ℹ️ Como eu posso te ajudar?
+➡️ Você pode usar os seguintes comandos para interagir comigo:
 
-      /start - Inicia a interação com o MergeGuard e exibe esta mensagem de boas-vindas.
+/start - Receba um gatinho simpático e uma saudação.
 
-      📢 Além disso, estou aqui para manter você atualizado sobre eventos importantes do seu projeto no GitLab! Receba notificações sobre commits, merge requests, pipelines e muito mais diretamente no seu Telegram.
+📢 Além disso, estou aqui para manter você atualizado sobre eventos importantes do seu projeto no GitLab! Receba notificações sobre commits, merge requests, pipelines e muito mais diretamente no seu Telegram.
 
-      Agora vamos lá, explorar todas as funcionalidades do MergeGuard juntos! 🚀 .
+Agora vamos lá, explorar todas as funcionalidades do MergeGuard juntos! 🚀 .
             """
       bot.reply_to(mensagem, texto)
 
