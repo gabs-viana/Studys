@@ -4,4 +4,4 @@ def calc_frase(age, name):
     else:
         print(f"Meu nome é {name} e tenho {age} anos de idade.")
 
-calc_frase(17,"Gabs")
+calc_frase(1,"Gabs")
