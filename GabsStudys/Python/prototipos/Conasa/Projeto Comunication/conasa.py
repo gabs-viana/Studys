@@ -23,7 +23,7 @@ planilha_b['Evento'] = planilha_b['Evento'].replace({1: 'Admitido', 3: 'Demitido
 planilha_a['CPF'] = planilha_a['CPF'].astype(str).str.zfill(11)
 planilha_b['CPF'] = planilha_b['CPF'].astype(str).str.zfill(11)
 
-# Garantir que a coluna 'Data de Nascimento' seja tratada como string no formato correto
+# Garantir que a coluna 'Data de Nascimento' seja tratada como data no formato correto
 planilha_a['Data de Nascimento'] = pd.to_datetime(planilha_a['Data de Nascimento'], errors='coerce').dt.date
 planilha_b['Data de Nascimento'] = pd.to_datetime(planilha_b['Data de Nascimento'], errors='coerce').dt.date
 
@@ -53,7 +53,7 @@ novos_funcionarios['Estado'] = ''
 novos_funcionarios['Empresa'] = ''
 novos_funcionarios['Segmento'] = ''
 
-# Mapeamento de empresas e segmentos
+# Mapeamento de empresas, cidades, estados e segmentos
 mapeamento = {
     '07': ('CONASA INFRAESTRUTURA', 'LONDRINA', 'PR', 'HOLDING'),
     '23': ('CONASA ÁGUAS DE ITAPEMA', 'ITAPEMA', 'SC', 'SANEAMENTO'),
@@ -70,28 +70,43 @@ mapeamento = {
     '32': ('ALEGRETE', 'SÃO JOÃO DE MERITI', 'RJ', 'ILUMINAÇÃO')
 }
 
-# Função para preencher informações da empresa e segmento
+# Função para preencher informações da empresa, cidade, estado e segmento corretamente
 def preencher_empresa_segmento(df):
-    df['Empresa'] = df['Matrícula'].str[:2].map(lambda x: mapeamento.get(x, ('', '', ''))[0])
-    df['Cidade'] = df['Matrícula'].str[:2].map(lambda x: mapeamento.get(x, ('', '', ''))[1])
-    df['Segmento'] = df['Matrícula'].str[:2].map(lambda x: mapeamento.get(x, ('', '', ''))[2])
-    df['Estado'] = df['Matrícula'].str[:2].map(lambda x: mapeamento.get(x, ('', '', ''))[3])
+    df['Empresa'] = df['Matrícula'].str[:2].map(lambda x: mapeamento.get(x, ('', '', '', ''))[0])
+    df['Cidade'] = df['Matrícula'].str[:2].map(lambda x: mapeamento.get(x, ('', '', '', ''))[1])
+    df['Estado'] = df['Matrícula'].str[:2].map(lambda x: mapeamento.get(x, ('', '', '', ''))[2])
+    df['Segmento'] = df['Matrícula'].str[:2].map(lambda x: mapeamento.get(x, ('', '', '', ''))[3])
     return df
 
-# Aplicar a função para preencher a empresa e segmento
+# Aplicar a função para preencher a empresa, cidade, estado e segmento corretamente
 novos_funcionarios = preencher_empresa_segmento(novos_funcionarios)
+
+# Adicionar a coluna 'Localidade' que repete a cidade
+novos_funcionarios['Localidade'] = novos_funcionarios['Cidade']
 
 # Renomear colunas conforme a sequência desejada
 novos_funcionarios = novos_funcionarios[['Nome', 'Matrícula', 'CPF', 'Função', 'Data de Admissão', 
-                                        'Centro de Custo', 'Centro de Custo', 'Cidade', 'Estado', 
+                                        'Centro de Custo', 'Centro de Custo', 'Cidade', 'Estado', 'Localidade', 
                                         'Data de Nascimento', 'Empresa', 'Segmento', 'Evento']]
 
 # Renomear colunas para correspondência final
 novos_funcionarios.columns = ['Nome', 'Matrícula', 'CPF', 'Cargo', 'Data de Admissão', 
-                              'Departamento', 'Grupo Hierárquico', 'Cidade', 'Estado', 
+                              'Departamento', 'Grupo Hierárquico', 'Cidade', 'Estado', 'Localidade',
                               'Data de Nascimento', 'Empresa', 'Segmento', 'Evento']
 
-# Exportar para uma nova planilha Excel
-novos_funcionarios.to_excel('novos_funcionarios_atualizado.xlsx', index=False)
+# Filtrar funcionários admitidos e demitidos
+admitidos = novos_funcionarios[novos_funcionarios['Evento'] == 'Admitido'].copy()
+demitidos = novos_funcionarios[novos_funcionarios['Evento'] == 'Demitido'].copy()
+
+# Contadores
+contador_admitidos = admitidos.shape[0]
+contador_demitidos = demitidos.shape[0]
+
+# Criar um ExcelWriter para salvar múltiplas abas
+with pd.ExcelWriter('novos_funcionarios_atualizado.xlsx') as writer:
+    # Salvar admitidos na aba 'Admitidos' com contador no título
+    admitidos.to_excel(writer, sheet_name=f'Admitidos ({contador_admitidos})', index=False)
+    # Salvar demitidos na aba 'Demitidos' com contador no título
+    demitidos.to_excel(writer, sheet_name=f'Demitidos ({contador_demitidos})', index=False)
 
 print("Exportação concluída. Novos funcionários exportados para 'novos_funcionarios_atualizado.xlsx'.")
