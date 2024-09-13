@@ -10,7 +10,7 @@ mapeamento_empresas = {
     'VIA BRASIL MT 246': ('viabr@24', 'viabrmt.com.br'),
     'VIA BRASIL MT 320': ('viabr@24', 'viabrmt.com.br'),
     'VIA BRASIL BR-163': ('viabr@24', 'viabr163.com.br'),
-    'ÁGUAS DO SERTÃO': ('ads@24', 'aguasdosertao.com'),
+    'ÁGUAS DO SERTÃO': ('aguasds@24', 'aguasdosertao.com'),
     'URBELUZ': ('urbe@24', 'urbeluz.com'),
     'CARAGUALUZ': ('caragua@24', 'caragua.com'),
     'LUZ DE BELÉM': ('luzdb@24', 'luzdebelem.com'),
@@ -41,7 +41,7 @@ def gerar_dados():
     email = f"{primeiro_nome.lower()}.{ultimo_nome.lower()}@{dominio}"
 
     # Gerar Compartilhamento
-    compartilhamento = f"/SPOOL/{primeiro_nome[0].upper()}{ultimo_nome.upper()}/"
+    compartilhamento = f"\SPOOL\{primeiro_nome[0].upper()}{ultimo_nome.upper()}/"
 
     # Exibir os dados no Text widget
     text_resultado.delete(1.0, tk.END)
