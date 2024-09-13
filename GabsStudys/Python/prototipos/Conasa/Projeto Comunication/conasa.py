@@ -81,20 +81,12 @@ def preencher_empresa_segmento(df):
 # Aplicar a função para preencher a empresa, cidade, estado e segmento corretamente
 novos_funcionarios = preencher_empresa_segmento(novos_funcionarios)
 
-<<<<<<< Updated upstream
 # Adicionar a coluna 'Localidade' que repete a cidade
-=======
-# Adicionar a coluna 'Localidade' repetindo os valores de 'Cidade'
->>>>>>> Stashed changes
 novos_funcionarios['Localidade'] = novos_funcionarios['Cidade']
 
 # Renomear colunas conforme a sequência desejada
 novos_funcionarios = novos_funcionarios[['Nome', 'Matrícula', 'CPF', 'Função', 'Data de Admissão', 
-<<<<<<< Updated upstream
                                         'Centro de Custo', 'Centro de Custo', 'Cidade', 'Estado', 'Localidade', 
-=======
-                                        'Centro de Custo', 'Centro de Custo', 'Cidade', 'Estado', 'Localidade',
->>>>>>> Stashed changes
                                         'Data de Nascimento', 'Empresa', 'Segmento', 'Evento']]
 
 # Renomear colunas para correspondência final
