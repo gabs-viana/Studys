@@ -1,12 +1,20 @@
-function Get-FileSHA1($filePath){
-    $fileContent = Get-Content $filePath
-    $fileBytes = [System.Text.Encoding]::UTF8.GetBytes($fileContent)
+function Get-FileSHA1($filePath) {
+    # Lê o arquivo diretamente como bytes
+    $fileBytes = [System.IO.File]::ReadAllBytes($filePath)
     $sha1 = New-Object System.Security.Cryptography.SHA1Managed
     $hash = $sha1.ComputeHash($fileBytes)
-    Write-Host $hash -BackgroundColor Black -ForegroundColor Green 
+
+    $prettyHashSB = New-Object System.Text.StringBuilder
+    foreach ($byte in $hash) {
+        $hexaNotation = $byte.ToString("X2")
+        $prettyHashSB.Append($hexaNotation)
+    }
+
+    Write-Host $prettyHashSB.ToString() -BackgroundColor Black -ForegroundColor Green 
 }
 
-Get-FileSHA1 D:\Gabs\Gab-Dev\estudos_do_gabs\estudos_do_gabs\Scripts\ShaFile.ps1
+
+Get-FileSHA1 "C:\Users\gabriel.viana\OneDrive - CONASA INFRAESTRUTURA S.A\GabsDev\GitHub\GabsStudys\Scripts\ShaFile.ps1"
 
 function Get-FileSHA256(){
 
