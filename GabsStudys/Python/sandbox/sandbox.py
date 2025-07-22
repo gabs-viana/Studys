@@ -19,6 +19,6 @@ elif tipo_site == "2":
     print(f"O site foi requerido na data {data_atual.strftime("%d/%m/%Y")} e ficará pronto até dia {data_estimada.strftime("%d/%m/%Y às %H:%M")}")
 elif tipo_site == "3":
     data_estimada = data_atual + timedelta(days=tempo_avancado)
-    print(f"O site foi requerido na data {data_atual.strftime("%d/%m/%Y")}ará pronto até dia {data_estimada.strftime("%d/%m/%Y às %H:%M")}")
+    print(f"O site foi requerido na data {data_atual.strftime("%d/%m/%Y")} e ficará pronto até dia {data_estimada.strftime("%d/%m/%Y às %H:%M")}")
 else: 
     print("Opção inválida patrão.")
